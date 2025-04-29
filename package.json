@@ -1,0 +1,22 @@
+{
+  "name": "mcp_transport",
+  "version": "1.0.0",
+  "main": "mcp_client_singleserver.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "mcp_client_singleserver.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@langchain/google-genai": "^0.2.5",
+    "@langchain/langgraph": "^0.2.67",
+    "@langchain/mcp-adapters": "^0.4.2",
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "dotenv": "^16.5.0",
+    "zod": "^3.24.3"
+  }
+}
