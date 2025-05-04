@@ -63,16 +63,18 @@ app.post("/api/generate", async (req, res) => {
     const agentResponse = await agent.invoke({
       messages: [{ role: "user", content: prompt }],
     });
-    console.log("agentResponse", agentResponse);
-
-    const aiMessageContents = agentResponse.messages
-      .filter((message) => message.__proto__.constructor.name === "AIMessage") // Check for AIMessage type
-      .map((message) => message.content);
-    console.log("aiMessageContents", aiMessageContents);
+    // console.log("agentResponse", agentResponse);
 
     // Send the response back to the client
+    const aiMessages = agentResponse.messages.filter(
+      (message) => message.__proto__.constructor.name === "AIMessage"
+    );
+    const finalAiMessage = aiMessages[aiMessages.length - 1]; // Get the last AIMessage
+    const aiMessageContent = finalAiMessage ? finalAiMessage.content : "No AI response found";
+    console.log("finalAiMessageContent", aiMessageContent);
+
     res.json({
-      response: aiMessageContents,
+      response: aiMessageContent,
     });
   } catch (error) {
     console.error("Error processing request:", error);
